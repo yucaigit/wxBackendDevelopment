@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etc.demo.dao.OrderDao">
+    <resultMap id="BaseResultMap" type="com.etc.demo.entity.Order">
+        <id column="order_id" jdbcType="INTEGER" property="orderId"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="goods_id" jdbcType="INTEGER" property="goodsId"/>
+        <result column="shopping_id" jdbcType="INTEGER" property="shoppingId"/>
+        <result column="order_state" jdbcType="INTEGER" property="orderState"/>
+        <result column="order_sendtime" jdbcType="TIMESTAMP" property="orderSendtime"/>
+        <result column="order_endtime" jdbcType="TIMESTAMP" property="orderEndtime"/>
+        <result column="order_describe" jdbcType="VARCHAR" property="orderDescribe"/>
+        <result column="order_amount" jdbcType="INTEGER" property="orderAmount"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        order_id, user_id, goods_id, shopping_id, order_state, order_sendtime, order_endtime,
+        order_describe, order_amount
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from orders
+        where order_id = #{orderId,jdbcType=INTEGER}
+    </select>
+    <select id="findAll" resultMap="ordermap">
+        select a.order_id order_id,a.user_id user_id,a.goods_id goods_id,a.order_state order_state,b.g_id g_id, b.g_name g_name,b.g_img1 g_img1,b.g_price g_price from orders a,goods b
+ where a.user_id =#{uid} and a.goods_id = b.g_id
+    </select>
+
+
+    <select id="getOrders" resultMap="result3">
+        select a.order_id order_id,a.user_id user_id,a.goods_id goods_id,a.order_sendtime order_sendtime,
+               a.order_amount order_amount,
+               b.u_id u_id,b.u_name u_name,b.u_phone u_phone,c.g_id g_id,c.g_name g_name,c.g_adress g_adress
+         from orders a,users b,goods c
+         where a.user_id = b.u_id and a.goods_id = c.g_id
+    </select>
+
+    <resultMap id="result3" type="com.etc.demo.entity.ReturnOrder">
+        <id column="order_id" property="orderId"/>
+        <result column="user_id" property="userId"/>
+        <result column="goods_id" property="goodsId"/>
+        <result column="order_sendtime" property="orderSendtime"/>
+        <result column="order_amount" property="orderAmount"/>
+
+        <association property="users" javaType="com.etc.demo.entity.Users">
+            <id column="u_id" property="uId"/>
+            <result column="u_name" property="uName"/>
+            <result column="u_phone" property="uPhone"/>
+        </association>
+        <association property="goods" javaType="com.etc.demo.entity.Goods">
+            <id column="g_id" property="gId"/>
+            <result column="g_name" property="gName"/>
+            <result column="g_adress" property="gAdress"/>
+        </association>
+    </resultMap>
+    <resultMap id="ordermap" type="com.etc.demo.entity.Order">
+        <id column="order_id" property="orderId"/>
+        <result column="user_id" property="userId"/>
+        <result column="goods_id" property="goodsId"/>
+        <result column="order_state" property="orderState"/>
+        <association property="goods" javaType="com.etc.demo.entity.Goods">
+            <id column="g_id" property="gId"></id>
+            <result column="g_name" property="gName"/>
+            <result column="g_img1" property="gImg1"/>
+            <result column="g_price" property="gPrice"/>
+        </association>
+    </resultMap>
+    <!--    <select id="findAll" resultMap="result2">-->
+<!--        select a.order_id order_id,a.user_id user_id,a.goods_id goods_id,a.order_state order_state,-->
+<!--        b.g_id g_id, b.g_name g_name,b.g_img1 g_img1,b.g_price g_price from orders a,goods b-->
+<!--        where a.user_id = #{uid}-->
+<!--        and a.goods_id = b.g_id-->
+<!--    </select>-->
+<!--    <resultMap id="result2" type="com.etc.demo.entity.Order">-->
+<!--        <id column="order_id" property="orderId"/>-->
+<!--        <result column="user_id" property="userId"/>-->
+<!--        <result column="goods_id" property="goodsId"/>-->
+<!--        <result column="order_state" property="orderState"/>-->
+<!--        <association property="goods" javaType="com.etc.demo.entity.Goods">-->
+<!--            <id column="g_id" property="gId"/>-->
+<!--            <result column="g_name" property="gName"/>-->
+<!--            <result column="g_img1" property="gImg1"/>-->
+<!--            <result column="g_price" property="gPrice"/>-->
+<!--        </association>-->
+<!--    </resultMap>-->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from orders
+        where order_id = #{orderId,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from orders where order_id = #{orderId}
+    </delete>
+    <insert id="insert" keyColumn="order_id" keyProperty="orderId" parameterType="com.etc.demo.entity.Order"
+            useGeneratedKeys="true">
+        insert into orders (user_id, goods_id, shopping_id,
+        order_state, order_sendtime, order_endtime,
+        order_describe, order_amount)
+        values (#{userId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{shoppingId,jdbcType=INTEGER},
+        #{orderState,jdbcType=INTEGER}, #{orderSendtime,jdbcType=VARCHAR}, #{orderEndtime,jdbcType=VARCHAR},
+        #{orderDescribe,jdbcType=VARCHAR}, #{orderAmount,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="order_id" keyProperty="orderId" parameterType="com.etc.demo.entity.Order"
+            useGeneratedKeys="true">
+        insert into order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="goodsId != null">
+                goods_id,
+            </if>
+            <if test="shoppingId != null">
+                shopping_id,
+            </if>
+            <if test="orderState != null">
+                order_state,
+            </if>
+            <if test="orderSendtime != null">
+                order_sendtime,
+            </if>
+            <if test="orderEndtime != null">
+                order_endtime,
+            </if>
+            <if test="orderDescribe != null">
+                order_describe,
+            </if>
+            <if test="orderAmount != null">
+                order_amount,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="goodsId != null">
+                #{goodsId,jdbcType=INTEGER},
+            </if>
+            <if test="shoppingId != null">
+                #{shoppingId,jdbcType=INTEGER},
+            </if>
+            <if test="orderState != null">
+                #{orderState,jdbcType=INTEGER},
+            </if>
+            <if test="orderSendtime != null">
+                #{orderSendtime,jdbcType=VARCHAR},
+            </if>
+            <if test="orderEndtime != null">
+                #{orderEndtime,jdbcType=VARCHAR},
+            </if>
+            <if test="orderDescribe != null">
+                #{orderDescribe,jdbcType=VARCHAR},
+            </if>
+            <if test="orderAmount != null">
+                #{orderAmount,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <insert id="addOrder">
+        insert into orders (user_id, goods_id, shopping_id,
+        order_state) values (#{param1},#{param2},null,2)
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.etc.demo.entity.Order">
+        update order
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="goodsId != null">
+                goods_id = #{goodsId,jdbcType=INTEGER},
+            </if>
+            <if test="shoppingId != null">
+                shopping_id = #{shoppingId,jdbcType=INTEGER},
+            </if>
+            <if test="orderState != null">
+                order_state = #{orderState,jdbcType=INTEGER},
+            </if>
+            <if test="orderSendtime != null">
+                order_sendtime = #{orderSendtime,jdbcType=VARCHAR},
+            </if>
+            <if test="orderEndtime != null">
+                order_endtime = #{orderEndtime,jdbcType=VARCHAR},
+            </if>
+            <if test="orderDescribe != null">
+                order_describe = #{orderDescribe,jdbcType=VARCHAR},
+            </if>
+            <if test="orderAmount != null">
+                order_amount = #{orderAmount,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where order_id = #{orderId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.etc.demo.entity.Order">
+        update order
+        set user_id = #{userId,jdbcType=INTEGER},
+        goods_id = #{goodsId,jdbcType=INTEGER},
+        shopping_id = #{shoppingId,jdbcType=INTEGER},
+        order_state = #{orderState,jdbcType=INTEGER},
+        order_sendtime = #{orderSendtime,jdbcType=VARCHAR},
+        order_endtime = #{orderEndtime,jdbcType=VARCHAR},
+        order_describe = #{orderDescribe,jdbcType=VARCHAR},
+        order_amount = #{orderAmount,jdbcType=VARCHAR}
+        where order_id = #{orderId,jdbcType=INTEGER}
+    </update>
+    <update id="updateOrderState" parameterType="int">
+        update orders set order_state =0 where order_id = #{oId}
+    </update>
+</mapper>

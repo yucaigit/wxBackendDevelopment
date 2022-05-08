@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etc.demo.dao.GoodsDao">
+    <resultMap id="BaseResultMap" type="com.etc.demo.entity.Goods">
+        <id column="g_id" jdbcType="INTEGER" property="gId"/>
+        <result column="g_name" jdbcType="VARCHAR" property="gName"/>
+        <result column="g_attributes" jdbcType="INTEGER" property="gAttributes"/>
+        <result column="g_img1" jdbcType="VARCHAR" property="gImg1"/>
+        <result column="g_price" jdbcType="VARCHAR" property="gPrice"/>
+        <result column="g_date_up" jdbcType="VARCHAR" property="gDateUp"/>
+        <result column="g_date_down" jdbcType="VARCHAR" property="gDateDown"/>
+        <result column="g_uid" jdbcType="INTEGER" property="gUid"/>
+        <result column="g_adress" jdbcType="VARCHAR" property="gAdress"/>
+        <result column="g_ifree" jdbcType="INTEGER" property="gIfree"/>
+        <result column="g_change" jdbcType="VARCHAR" property="gChange"/>
+        <result column="g_state" jdbcType="VARCHAR" property="gState"/>
+        <result column="g_a" jdbcType="INTEGER" property="gA"/>
+        <result column="g_b" jdbcType="INTEGER" property="gB"/>
+        <result column="g_c" jdbcType="VARCHAR" property="gC"/>
+        <result column="g_img2" jdbcType="VARCHAR" property="gImg2"/>
+        <result column="g_describe" jdbcType="VARCHAR" property="gDescribe"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        g_id, g_name, g_attributes, g_img1, g_price, g_date_up, g_date_down, g_uid, g_adress,
+        g_ifree, g_change, g_state, g_a, g_b, g_c, g_img2, g_describe
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.etc.demo.entity.Goods">
+        select
+        <include refid="Base_Column_List"/>
+        from goods
+        where g_id = #{gId}
+    </select>
+    <select id="searchByName" resultType="com.etc.demo.entity.Goods">
+        select
+        <include refid="Base_Column_List"/>
+        from goods
+        where g_name like #{query1}
+    </select>
+    <select id="findOne" resultMap="resultMap2">
+        select a.g_id g_id,a.g_name g_name,a.g_attributes g_attributes,a.g_price g_price,a.g_adress
+        g_adress,a.g_describe g_describe,a.g_img1 g_img1, b.img_id img_id,b.img_src img_src,b.g_id g_id from goods
+        a,imgs b where a.g_id = #{g_id}
+        and
+        a.g_id = b.g_id
+    </select>
+
+    <select id="selectgIdByName" resultType="java.lang.Integer">
+        select g_id from goods where g_name =#{param1} and g_img1 = #{param2}
+    </select>
+    <select id="findAll" resultType="com.etc.demo.entity.Goods">
+        select
+        <include refid="Base_Column_List"/>
+        from goods
+    </select>
+
+    <resultMap id="resultMap2" type="com.etc.demo.entity.Goods">
+        <id column="g_id" property="gId"/>
+        <result column="g_name" property="gName"/>
+        <result column="g_attributes" property="gAttributes"/>
+        <result column="g_price" property="gPrice"/>
+        <result column="g_adress" property="gAdress"/>
+        <result column="g_describe" property="gDescribe"/>
+        <result column="g_img1" property="gImg1"/>
+        <collection property="imgs" ofType="com.etc.demo.entity.Imgs">
+            <id column="img_id" property="imgId"/>
+            <result column="img_src" property="imgSrc"/>
+            <result column="g_id" property="gId"/>
+        </collection>
+    </resultMap>
+    <!--  查询商品信息-->
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from goods
+        where g_id = #{gId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="g_id" keyProperty="gId" parameterType="com.etc.demo.entity.Goods"
+            useGeneratedKeys="true">
+        insert into goods (g_name, g_attributes, g_img1,
+        g_price, g_date_up, g_date_down,
+        g_uid, g_adress, g_ifree,
+        g_change, g_state, g_a,
+        g_b, g_c, g_img2, g_describe
+        )
+        values (#{gName,jdbcType=VARCHAR}, #{gAttributes,jdbcType=INTEGER}, #{gImg1,jdbcType=VARCHAR},
+        #{gPrice,jdbcType=DECIMAL}, #{gDateUp,jdbcType=VARCHAR}, #{gDateDown,jdbcType=VARCHAR},
+        #{gUid,jdbcType=INTEGER}, #{gAdress,jdbcType=VARCHAR}, #{gIfree,jdbcType=VARCHAR},
+        #{gChange,jdbcType=VARCHAR}, #{gState,jdbcType=VARCHAR}, #{gA,jdbcType=INTEGER},
+        #{gB,jdbcType=VARCHAR}, #{gC,jdbcType=VARCHAR}, #{gImg2,jdbcType=VARCHAR}, #{gDescribe,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="g_id" keyProperty="gId" parameterType="com.etc.demo.entity.Goods"
+            useGeneratedKeys="true">
+        insert into goods
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="gName != null">
+                g_name,
+            </if>
+            <if test="gAttributes != null">
+                g_attributes,
+            </if>
+            <if test="gImg1 != null">
+                g_img1,
+            </if>
+            <if test="gPrice != null">
+                g_price,
+            </if>
+            <if test="gDateUp != null">
+                g_date_up,
+            </if>
+            <if test="gDateDown != null">
+                g_date_down,
+            </if>
+            <if test="gUid != null">
+                g_uid,
+            </if>
+            <if test="gAdress != null">
+                g_adress,
+            </if>
+            <if test="gIfree != null">
+                g_ifree,
+            </if>
+            <if test="gChange != null">
+                g_change,
+            </if>
+            <if test="gState != null">
+                g_state,
+            </if>
+            <if test="gA != null">
+                g_a,
+            </if>
+            <if test="gB != null">
+                g_b,
+            </if>
+            <if test="gC != null">
+                g_c,
+            </if>
+            <if test="gImg2 != null">
+                g_img2,
+            </if>
+            <if test="gDescribe != null">
+                g_describe,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="gName != null">
+                #{gName,jdbcType=VARCHAR},
+            </if>
+            <if test="gAttributes != null">
+                #{gAttributes,jdbcType=INTEGER},
+            </if>
+            <if test="gImg1 != null">
+                #{gImg1,jdbcType=VARCHAR},
+            </if>
+            <if test="gPrice != null">
+                #{gPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="gDateUp != null">
+                #{gDateUp,jdbcType=VARCHAR},
+            </if>
+            <if test="gDateDown != null">
+                #{gDateDown,jdbcType=VARCHAR},
+            </if>
+            <if test="gUid != null">
+                #{gUid,jdbcType=INTEGER},
+            </if>
+            <if test="gAdress != null">
+                #{gAdress,jdbcType=VARCHAR},
+            </if>
+            <if test="gIfree != null">
+                #{gIfree,jdbcType=VARCHAR},
+            </if>
+            <if test="gChange != null">
+                #{gChange,jdbcType=VARCHAR},
+            </if>
+            <if test="gState != null">
+                #{gState,jdbcType=VARCHAR},
+            </if>
+            <if test="gA != null">
+                #{gA,jdbcType=INTEGER},
+            </if>
+            <if test="gB != null">
+                #{gB,jdbcType=VARCHAR},
+            </if>
+            <if test="gC != null">
+                #{gC,jdbcType=VARCHAR},
+            </if>
+            <if test="gImg2 != null">
+                #{gImg2,jdbcType=VARCHAR},
+            </if>
+            <if test="gDescribe != null">
+                #{gDescribe,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="saveGoods">
+        insert into goods (g_name,g_attributes, g_img1, g_price, g_date_up,g_uid, g_adress,g_describe) values
+        (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8})
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.etc.demo.entity.Goods">
+        update goods
+        <set>
+            <if test="gName != null">
+                g_name = #{gName,jdbcType=VARCHAR},
+            </if>
+            <if test="gAttributes != null">
+                g_attributes = #{gAttributes,jdbcType=INTEGER},
+            </if>
+            <if test="gImg1 != null">
+                g_img1 = #{gImg1,jdbcType=VARCHAR},
+            </if>
+            <if test="gPrice != null">
+                g_price = #{gPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="gDateUp != null">
+                g_date_up = #{gDateUp,jdbcType=VARCHAR},
+            </if>
+            <if test="gDateDown != null">
+                g_date_down = #{gDateDown,jdbcType=VARCHAR},
+            </if>
+            <if test="gUid != null">
+                g_uid = #{gUid,jdbcType=INTEGER},
+            </if>
+            <if test="gAdress != null">
+                g_adress = #{gAdress,jdbcType=VARCHAR},
+            </if>
+            <if test="gIfree != null">
+                g_ifree = #{gIfree,jdbcType=VARCHAR},
+            </if>
+            <if test="gChange != null">
+                g_change = #{gChange,jdbcType=VARCHAR},
+            </if>
+            <if test="gState != null">
+                g_state = #{gState,jdbcType=VARCHAR},
+            </if>
+            <if test="gA != null">
+                g_a = #{gA,jdbcType=INTEGER},
+            </if>
+            <if test="gB != null">
+                g_b = #{gB,jdbcType=VARCHAR},
+            </if>
+            <if test="gC != null">
+                g_c = #{gC,jdbcType=VARCHAR},
+            </if>
+            <if test="gImg2 != null">
+                g_img2 = #{gImg2,jdbcType=VARCHAR},
+            </if>
+            <if test="gDescribe != null">
+                g_describe = #{gDescribe,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where g_id = #{gId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.etc.demo.entity.Goods">
+        update goods
+        set g_name = #{gName,jdbcType=VARCHAR},
+        g_attributes = #{gAttributes,jdbcType=INTEGER},
+        g_img1 = #{gImg1,jdbcType=VARCHAR},
+        g_price = #{gPrice,jdbcType=DECIMAL},
+        g_date_up = #{gDateUp,jdbcType=VARCHAR},
+        g_date_down = #{gDateDown,jdbcType=VARCHAR},
+        g_uid = #{gUid,jdbcType=INTEGER},
+        g_adress = #{gAdress,jdbcType=VARCHAR},
+        g_ifree = #{gIfree,jdbcType=VARCHAR},
+        g_change = #{gChange,jdbcType=VARCHAR},
+        g_state = #{gState,jdbcType=VARCHAR},
+        g_a = #{gA,jdbcType=INTEGER},
+        g_b = #{gB,jdbcType=VARCHAR},
+        g_c = #{gC,jdbcType=VARCHAR},
+        g_img2 = #{gImg2,jdbcType=VARCHAR},
+        g_describe = #{gDescribe,jdbcType=VARCHAR}
+        where g_id = #{gId,jdbcType=INTEGER}
+    </update>
+    <update id="updateGAByID">
+        update goods set g_a=g_a+1 where g_id=#{g_id}
+    </update>
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etc.demo.dao.AdressMapper">
+    <resultMap id="BaseResultMap" type="com.etc.demo.entity.Adress">
+        <id column="adressId" property="adressId"/>
+        <result column="resiveName" property="resiveName"/>
+        <result column="phone" property="phone"/>
+        <result column="roughAdress" property="roughAdress"/>
+        <result column="detailAdress" property="detailAdress"/>
+        <result column="uId" property="uid"/>
+    </resultMap>
+    <sql id="BaseList">
+        adressId,resiveName,phone,roughAdress,detailAdress,uId
+    </sql>
+    <insert id="insert" keyColumn="adressId" keyProperty="adressId" parameterType="com.etc.demo.entity.Adress"
+            useGeneratedKeys="true">
+        insert into adress
+        (adressId,resiveName,phone,roughAdress,detailAdress,uId)
+        values (#{adressId},#{resiveName},#{phone},#{roughAdress},#{detailAdress},#{uid})
+    </insert>
+</mapper>

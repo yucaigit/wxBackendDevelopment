@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etc.demo.dao.ImgsMapper">
+    <resultMap id="BaseResultMap" type="com.etc.demo.entity.Imgs">
+        <id column="img_id" jdbcType="INTEGER" property="imgId"/>
+        <result column="img_src" jdbcType="VARCHAR" property="imgSrc"/>
+        <result column="g_id" jdbcType="INTEGER" property="gId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        img_id, img_src, g_id
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from imgs
+        where img_id = #{imgId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from imgs
+        where img_id = #{imgId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="img_id" keyProperty="imgId" parameterType="com.etc.demo.entity.Imgs"
+            useGeneratedKeys="true">
+        insert into imgs (img_src, g_id)
+        values (#{imgSrc,jdbcType=VARCHAR}, #{gId,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" keyColumn="img_id" keyProperty="imgId" parameterType="com.etc.demo.entity.Imgs"
+            useGeneratedKeys="true">
+        insert into imgs
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="imgSrc != null">
+                img_src,
+            </if>
+            <if test="gId != null">
+                g_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="imgSrc != null">
+                #{imgSrc,jdbcType=VARCHAR},
+            </if>
+            <if test="gId != null">
+                #{gId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <insert id="saveImges">
+        insert into imgs values (null ,#{param1},#{param2})
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.etc.demo.entity.Imgs">
+        update imgs
+        <set>
+            <if test="imgSrc != null">
+                img_src = #{imgSrc,jdbcType=VARCHAR},
+            </if>
+            <if test="gId != null">
+                g_id = #{gId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where img_id = #{imgId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.etc.demo.entity.Imgs">
+        update imgs
+        set img_src = #{imgSrc,jdbcType=VARCHAR},
+        g_id = #{gId,jdbcType=INTEGER}
+        where img_id = #{imgId,jdbcType=INTEGER}
+    </update>
+</mapper>

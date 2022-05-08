@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etc.demo.dao.AttributeMapper">
+
+    <resultMap id="BaseResultMap" type="generator.domain.Attribute">
+        <id property="aId" column="a_id" jdbcType="INTEGER"/>
+        <result property="aName" column="a_name" jdbcType="VARCHAR"/>
+        <result property="aGrade" column="a_grade" jdbcType="VARCHAR"/>
+        <result property="aCount" column="a_count" jdbcType="INTEGER"/>
+        <result property="aA" column="a_a" jdbcType="VARCHAR"/>
+        <result property="aB" column="a_b" jdbcType="VARCHAR"/>
+        <result property="aC" column="a_c" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        a_id,a_name,a_grade,
+        a_count,a_a,a_b,
+        a_c
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from attribute
+        where a_id = #{aId,jdbcType=INTEGER}
+    </select>
+    <select id="selectIdByName" resultType="java.lang.Integer">
+        select a_id from attribute where a_name=#{name}
+    </select>
+    <select id="findAll" resultMap="sortGoods">
+        select a.a_id,a.a_name,b.g_id,b.g_name,b.g_attributes,b.g_img1,b.g_price from attribute a left join goods b on
+        a.a_id = b.g_attributes
+    </select>
+    <resultMap id="sortGoods" type="com.etc.demo.entity.Attribute">
+        <id column="a_id" property="aId"></id>
+        <result column="a_name" property="aName"></result>
+        <collection property="goodsList" resultMap="sortMap2"></collection>
+    </resultMap>
+
+    <resultMap id="sortMap2" type="com.etc.demo.entity.Goods">
+        <id column="g_id" property="gId"></id>
+        <result column="g_name" property="gName"></result>
+        <result column="g_attributes" property="gAttributes"></result>
+        <result column="g_img1" property="gImg1"></result>
+        <result column="g_price" property="gPrice"></result>
+    </resultMap>
+    <!--        <select id="findAll" resultMap="sortGoods">-->
+    <!--        select a.a_id,a.a_name,b.g_id,b.g_name,b.g_attributes from attribute a,goods b-->
+    <!--        where a.a_id = b.g_attributes or a.a_id != null-->
+    <!--    </select>-->
+
+    <!--    <resultMap id="sortGoods" type="com.etc.demo.entity.Attribute">-->
+    <!--        <id column="a_id" property="aId"></id>-->
+    <!--        <result column="a_name" property="aName"></result>-->
+    <!--        <collection property="goodsList" ofType="com.etc.demo.entity.Goods">-->
+    <!--            <id column="g_id" property="gId"></id>-->
+    <!--            <result column="g_name" property="gName"></result>-->
+    <!--            <result column="g_attributes" property="gAttributes"></result>-->
+    <!--        </collection>-->
+    <!--    </resultMap>-->
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from attribute
+        where a_id = #{aId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="a_id" keyProperty="aId" parameterType="generator.domain.Attribute"
+            useGeneratedKeys="true">
+        insert into attribute
+        ( a_id,a_name,a_grade
+        ,a_count,a_a,a_b
+        ,a_c)
+        values (#{aId,jdbcType=INTEGER},#{aName,jdbcType=VARCHAR},#{aGrade,jdbcType=VARCHAR}
+        ,#{aCount,jdbcType=INTEGER},#{aA,jdbcType=VARCHAR},#{aB,jdbcType=VARCHAR}
+        ,#{aC,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="a_id" keyProperty="aId" parameterType="generator.domain.Attribute"
+            useGeneratedKeys="true">
+        insert into attribute
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="aId != null">a_id,</if>
+            <if test="aName != null">a_name,</if>
+            <if test="aGrade != null">a_grade,</if>
+            <if test="aCount != null">a_count,</if>
+            <if test="aA != null">a_a,</if>
+            <if test="aB != null">a_b,</if>
+            <if test="aC != null">a_c,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="aId != null">#{aId,jdbcType=INTEGER},</if>
+            <if test="aName != null">#{aName,jdbcType=VARCHAR},</if>
+            <if test="aGrade != null">#{aGrade,jdbcType=VARCHAR},</if>
+            <if test="aCount != null">#{aCount,jdbcType=INTEGER},</if>
+            <if test="aA != null">#{aA,jdbcType=VARCHAR},</if>
+            <if test="aB != null">#{aB,jdbcType=VARCHAR},</if>
+            <if test="aC != null">#{aC,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="generator.domain.Attribute">
+        update attribute
+        <set>
+            <if test="aName != null">
+                a_name = #{aName,jdbcType=VARCHAR},
+            </if>
+            <if test="aGrade != null">
+                a_grade = #{aGrade,jdbcType=VARCHAR},
+            </if>
+            <if test="aCount != null">
+                a_count = #{aCount,jdbcType=INTEGER},
+            </if>
+            <if test="aA != null">
+                a_a = #{aA,jdbcType=VARCHAR},
+            </if>
+            <if test="aB != null">
+                a_b = #{aB,jdbcType=VARCHAR},
+            </if>
+            <if test="aC != null">
+                a_c = #{aC,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where a_id = #{aId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="generator.domain.Attribute">
+        update attribute
+        set
+        a_name = #{aName,jdbcType=VARCHAR},
+        a_grade = #{aGrade,jdbcType=VARCHAR},
+        a_count = #{aCount,jdbcType=INTEGER},
+        a_a = #{aA,jdbcType=VARCHAR},
+        a_b = #{aB,jdbcType=VARCHAR},
+        a_c = #{aC,jdbcType=VARCHAR}
+        where a_id = #{aId,jdbcType=INTEGER}
+    </update>
+</mapper>
