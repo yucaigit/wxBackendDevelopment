@@ -53,4 +53,7 @@ public interface OrderDao {
 
     @Select("select * from orders where user_id = #{param1}")
     List<Order> getOrdersByUserid(Integer userid);
+
+//    得到全部金额
+    List<Order> getAllOrder();
 }

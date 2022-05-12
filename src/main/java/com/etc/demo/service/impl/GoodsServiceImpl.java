@@ -87,4 +87,9 @@ public class GoodsServiceImpl implements GoodsService {
     public int findUserId(Integer goodsid) {
         return goodsDao.findUserid(goodsid);
     }
+
+    @Override
+    public Goods getOneGoodsId(Integer i) {
+        return goodsDao.getOne(i);
+    }
 }

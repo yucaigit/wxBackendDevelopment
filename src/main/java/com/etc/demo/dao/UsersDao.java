@@ -36,4 +36,7 @@ public interface UsersDao {
 
     @Update("update users set u_state = 1 where u_id =#{param1}")
     Boolean updateUserState(Integer userid);
+
+    @Select("select u_name from users where u_id = #{param1}")
+    String getOneName(Integer uid);
 }

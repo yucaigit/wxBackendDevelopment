@@ -6,16 +6,16 @@ import com.etc.demo.service.OrderService;
 import com.etc.demo.utils.SendMessageUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.aspectj.weaver.ast.Or;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+
+import java.util.*;
+
 @RestController
 public class MessageMentController {
     private static String phone=null;
@@ -33,6 +33,8 @@ public class MessageMentController {
     AdressMapper adressMapper;
     @Autowired
     OrderDao orderDao;
+    @Autowired
+    AttributeMapper attributeMapper;
     @RequestMapping("/mesage/login")
     public boolean login(){
         return true;
@@ -140,4 +142,60 @@ public class MessageMentController {
         return ordersByUserid;
     }
 
+    @RequestMapping("/mesage/getattrbute")
+    public List<String> getAllNameOfattribu(){return attributeMapper.getAllName();}
+
+//    根据商品名称搜索
+    @RequestMapping("/mesage/getGoodsByName")
+    public Goods getGoodsByn(@RequestParam String gName){return goodsDao.getGoodsByName(gName);}
+
+    //根据类别搜索
+    @RequestMapping("/mesage/getGoodsByattr")
+    public List<Goods> getGoodsByattr(@RequestParam String aName){
+        int gAttributes = attributeMapper.getAllId(aName);
+        List<Goods> goodsList = goodsDao.getAllGoodsByAid(gAttributes);
+        return goodsList;
+    }
+    @RequestMapping("/mesage/getUserName")
+    public String getUserName(@RequestParam Integer uid){
+        return usersDao.getOneName(uid);
+    }
+    @RequestMapping("/mesage/getGoodsnameAttr")
+    public Goods getOneByttandGName(@RequestParam String attr,
+                                    @RequestParam String gName){
+        int id = attributeMapper.getAllId(attr);
+        Goods one = goodsDao.getOneGoods(id,gName);
+        return null;
+    }
+//    得到用户数量 商品数量 订单数量
+    @RequestMapping("/mesage/getUsersNum")
+    public int getUserNumss(){
+        List<Users> user = usersDao.getUser();
+        return user.size();
+    }
+    @RequestMapping("/mesage/getGoodsNum")
+    public int getUserNumO(){
+        List<Goods> all = goodsDao.getAll();
+        return all.size();
+    }
+    @RequestMapping("/mesage/getOrderNum")
+    public int getOrderNums(){
+        List<ReturnOrder> orders = orderDao.getOrders();
+        return orders.size();
+    }
+
+//    @RequestMapping("/mesage/getOrderSucc")
+//    public int getsuccessOrderNum(){
+//         orderDao.getsuccessOrder();
+//    }
+    @RequestMapping("/mesage/getallMoney")
+    public int getAllMoney(){
+        int money =0;
+
+        List<Order> list = orderDao.getAllOrder();
+        for (Order o: list){
+            money += o.getOrderAmount()*Integer.parseInt(o.getGoods().getGPrice());
+        }
+        return money;
+    }
 }

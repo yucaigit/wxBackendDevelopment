@@ -59,6 +59,18 @@ public interface GoodsDao {
     @Select("select *from goods where g_id = #{param1}")
     Goods getGoodsById(Integer goodsid);
 
-    //update goods set g_a=g_a+1 where g_id=#{g_id}
+    @Select("select *from goods where g_id = #{param1}")
+    Goods getOne(Integer i);
 
+    @Select("select *from goods where g_name = #{param1}")
+    Goods getGoodsByName(String gName);
+
+    @Select("select *from goods where g_attributes = #{param1}")
+    List<Goods> getAllGoodsByAid(int gAttributes);
+
+    @Select("select *from goods where g_name =#{param2} and g_attributes = #{param1}")
+    Goods getOneGoods(int id, String gName);
+
+    //update goods set g_a=g_a+1 where g_id=#{g_id}
+    //
 }

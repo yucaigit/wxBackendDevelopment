@@ -5,23 +5,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8d988458-1e83-4db5-aa4b-6911d59dfcf0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/utils/SendShortMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/controller/MessageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/hmwebsocket/Message.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/hmwebsocket/MessageUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/hmwebsocket/ResultMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/service/MessageService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/service/impl/MessageServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/webSocket/WebSocketServerEndpoint2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5e1244c7-48b2-439e-b403-78b3d679ff2a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/5e1244c7-48b2-439e-b403-78b3d679ff2a.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/mybatisx/templates.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mybatisx/templates.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/controller/GoodsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/controller/GoodsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/dao/AttributeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/dao/AttributeMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/dao/GoodsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/dao/GoodsDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/dao/MessageMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/dao/MessageMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/dao/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/dao/OrderDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/dao/UsersDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/dao/UsersDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/entity/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/entity/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/entity/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/menagement/MessageMentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/menagement/MessageMentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/menagement/ShortmessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/menagement/ShortmessageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/utils/SendMessageUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/utils/SendMessageUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/webSocket/WebSocketServerEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/webSocket/WebSocketServerEndpoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/service/GoodsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/service/GoodsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/service/impl/GoodsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/service/impl/GoodsServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/OrderDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/OrderDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/etc/demo/controller/GoodsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/etc/demo/controller/GoodsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/etc/demo/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/etc/demo/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/etc/demo/dao/AttributeMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/etc/demo/dao/AttributeMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/etc/demo/dao/GoodsDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/etc/demo/dao/GoodsDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/etc/demo/dao/MessageMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/etc/demo/dao/MessageMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/etc/demo/dao/OrderDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/etc/demo/dao/OrderDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/etc/demo/dao/UsersDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/etc/demo/dao/UsersDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/etc/demo/entity/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/etc/demo/entity/Message.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/etc/demo/menagement/MessageMentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/etc/demo/menagement/MessageMentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/etc/demo/utils/SendMessageUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/etc/demo/utils/SendMessageUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/etc/demo/webSocket/WebSocketServerEndpoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/etc/demo/webSocket/WebSocketServerEndpoint.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/OrderDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/OrderDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/etc/demo/service/GoodsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/etc/demo/service/GoodsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/etc/demo/service/impl/GoodsServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/etc/demo/service/impl/GoodsServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,14 +81,14 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/spring-boot-websocket-study-master/spring-boot-websocket-study-master" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/websocket-chatroom-demo-master/websocket-chatroom-demo-master" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -88,19 +105,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.WxserverApplication">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="AttributeServiceImpl.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="wxServerP" />
       <extension name="coverage">
@@ -184,6 +188,13 @@
       <workItem from="1651897540294" duration="650000" />
       <workItem from="1651986968614" duration="7071000" />
       <workItem from="1652012999655" duration="6160000" />
+      <workItem from="1652064440219" duration="228000" />
+      <workItem from="1652080381110" duration="1631000" />
+      <workItem from="1652148549930" duration="1505000" />
+      <workItem from="1652151123549" duration="13459000" />
+      <workItem from="1652231152834" duration="2500000" />
+      <workItem from="1652233884106" duration="6362000" />
+      <workItem from="1652319544891" duration="14646000" />
     </task>
     <servers />
   </component>

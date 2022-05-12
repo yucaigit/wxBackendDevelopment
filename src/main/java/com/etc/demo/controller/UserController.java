@@ -12,12 +12,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.HashSet;
+import java.util.Set;
+
 
 @RestController
 public class UserController {
     private static String rquestUrl = "https://api.weixin.qq.com/sns/jscode2session?appid={appid}&secret={secret}&js_code={js_code}&grant_type={grant_type}";
     private static final String appId = "wx00184b78fbcf0d17";
     private static final String appSecret = "9f50f97c25b396f46a5de1879f15aed9";
+
+    private static Set<Users> users = new HashSet<>();
+
     @Autowired
     RestTemplate restTemplate;
     @Autowired
@@ -31,6 +37,7 @@ public class UserController {
     public Users wxLogin(UserInfo userInfo) {
 //        返回一个用户对象
         Users user = userService.login(userInfo);
+        users.add(user);
         return user;
     }
 
@@ -43,5 +50,8 @@ public class UserController {
     public Boolean qiuGou(QiugouEntity qiugouEntity) {
         return qiugouService.savaXuQiu(qiugouEntity);
     }
+
+    @RequestMapping("/onLineUsers")
+    public int getOnlines(){return users.size();}
 }
 

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etc.demo.dao.MessageMapper">
+
+    <resultMap id="BaseResultMap" type="com.etc.demo.entity.Message">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="message" column="message" jdbcType="VARCHAR"/>
+            <result property="goodsid" column="goodsid" jdbcType="INTEGER"/>
+            <result property="sellid" column="sellid" jdbcType="INTEGER"/>
+            <result property="buyid" column="buyid" jdbcType="INTEGER"/>
+            <result property="selltime" column="selltime" jdbcType="TIMESTAMP"/>
+            <result property="buytime" column="buytime" jdbcType="TIMESTAMP"/>
+            <result property="buyname" column="buyname" jdbcType="VARCHAR"/>
+            <result property="replymessage" column="replymessage" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,message,goodsid,
+        sellid,buyid,selltime,
+        buytime,buyname,replymessage
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from message
+        where  id = #{id,jdbcType=INTEGER} 
+    </select>
+    <select id="getAllMs" resultMap="result1">
+        select a.id id,a.message message,a.selltime selltime,a.sellid sellid,a.buyid buyid,a.buyname buyname,a.replymessage replymessage,
+               b.u_id u_id,b.u_a u_a from message a,users b where a.sellid = #{uid} and a.buyid = b.u_id and a.replymessage IS NULL
+    </select>
+
+    <resultMap id="result1" type="com.etc.demo.entity.Message">
+        <id property="id" column="id"/>
+        <result property="message" column="message"/>
+        <result property="selltime" column="selltime"/>
+        <result property="sellid" column="sellid"/>
+        <result property="buyid" column="buyid"/>
+        <result property="buyname" column="buyname"/>
+        <result property="replymessage" column="replaymessage"/>
+        <association property="users" javaType="com.etc.demo.entity.Users">
+            <id property="uId" column="u_id"/>
+            <result property="uA" column="u_a"/>
+        </association>
+    </resultMap>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from message
+        where  id = #{id,jdbcType=INTEGER} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.etc.demo.entity.Message" useGeneratedKeys="true">
+        insert into message
+        ( id,message,goodsid
+        ,sellid,buyid,selltime
+        ,buytime,buyname,replymessage
+        )
+        values (#{id,jdbcType=INTEGER},#{message,jdbcType=VARCHAR},#{goodsid,jdbcType=INTEGER}
+        ,#{sellid,jdbcType=INTEGER},#{buyid,jdbcType=INTEGER},#{selltime,jdbcType=TIMESTAMP}
+        ,#{buytime,jdbcType=TIMESTAMP},#{buyname,jdbcType=VARCHAR},#{replymessage,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.etc.demo.entity.Message" useGeneratedKeys="true">
+        insert into message
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">id,</if>
+                <if test="message != null">message,</if>
+                <if test="goodsid != null">goodsid,</if>
+                <if test="sellid != null">sellid,</if>
+                <if test="buyid != null">buyid,</if>
+                <if test="selltime != null">selltime,</if>
+                <if test="buytime != null">buytime,</if>
+                <if test="buyname != null">buyname,</if>
+                <if test="replymessage != null">replymessage,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">#{id,jdbcType=INTEGER},</if>
+                <if test="message != null">#{message,jdbcType=VARCHAR},</if>
+                <if test="goodsid != null">#{goodsid,jdbcType=INTEGER},</if>
+                <if test="sellid != null">#{sellid,jdbcType=INTEGER},</if>
+                <if test="buyid != null">#{buyid,jdbcType=INTEGER},</if>
+                <if test="selltime != null">#{selltime,jdbcType=TIMESTAMP},</if>
+                <if test="buytime != null">#{buytime,jdbcType=TIMESTAMP},</if>
+                <if test="buyname != null">#{buyname,jdbcType=VARCHAR},</if>
+                <if test="replymessage != null">#{replymessage,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.etc.demo.entity.Message">
+        update message
+        <set>
+                <if test="message != null">
+                    message = #{message,jdbcType=VARCHAR},
+                </if>
+                <if test="goodsid != null">
+                    goodsid = #{goodsid,jdbcType=INTEGER},
+                </if>
+                <if test="sellid != null">
+                    sellid = #{sellid,jdbcType=INTEGER},
+                </if>
+                <if test="buyid != null">
+                    buyid = #{buyid,jdbcType=INTEGER},
+                </if>
+                <if test="selltime != null">
+                    selltime = #{selltime,jdbcType=TIMESTAMP},
+                </if>
+                <if test="buytime != null">
+                    buytime = #{buytime,jdbcType=TIMESTAMP},
+                </if>
+                <if test="buyname != null">
+                    buyname = #{buyname,jdbcType=VARCHAR},
+                </if>
+                <if test="replymessage != null">
+                    replymessage = #{replymessage,jdbcType=VARCHAR},
+                </if>
+        </set>
+        where   id = #{id,jdbcType=INTEGER} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.etc.demo.entity.Message">
+        update message
+        set 
+            message =  #{message,jdbcType=VARCHAR},
+            goodsid =  #{goodsid,jdbcType=INTEGER},
+            sellid =  #{sellid,jdbcType=INTEGER},
+            buyid =  #{buyid,jdbcType=INTEGER},
+            selltime =  #{selltime,jdbcType=TIMESTAMP},
+            buytime =  #{buytime,jdbcType=TIMESTAMP},
+            buyname =  #{buyname,jdbcType=VARCHAR},
+            replymessage =  #{replymessage,jdbcType=VARCHAR}
+        where   id = #{id,jdbcType=INTEGER} 
+    </update>
+</mapper>

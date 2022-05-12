@@ -14,7 +14,7 @@ import com.etc.demo.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.*;
 
 
 @RestController
@@ -23,6 +23,7 @@ public class GoodsController {
     // sum 用来存储 热搜榜
     private static int sum;
 
+    private static Map<Integer, Set<Integer>> hisymap = new HashMap<>();
     @Autowired
     AdressMapper adressMapper;
     @Autowired
@@ -39,6 +40,8 @@ public class GoodsController {
     OrderDao orderDao;
     @Autowired
     UsersDao usersDao;
+
+
     //    得到轮播图树据
     @RequestMapping("/findSwiperList")
     public List<SwiperListEntity> swiperList() {
@@ -139,4 +142,51 @@ public class GoodsController {
        return messageMapper.addMesage(msg,goodsid,sellid,buyid,buyName);
     }
 
+    //添加到足迹里面
+    @RequestMapping("/addHistory")
+    public Boolean addHistory(@RequestParam Integer uid,
+                              @RequestParam Integer goodsid)
+    {
+        boolean b = hisymap.containsKey(uid);
+        if (b){
+            Set<Integer> integers = hisymap.get(uid);
+            integers.add(goodsid);
+            hisymap.put(uid,integers);
+            System.out.println(hisymap);
+            return true;
+        }else {
+            Set<Integer> set = new HashSet<>();
+            set.add(goodsid);
+            hisymap.put(uid,set);
+        }
+        return true;
+    }
+    @RequestMapping("/gethisyMap")
+    public Set<Integer> getHisySet(@RequestParam Integer uid){
+        Set<Integer> integers = hisymap.get(uid);
+        return integers;
+    }
+    @RequestMapping("/getHisyList")
+    public List<Goods> getHisList(@RequestParam Integer uid){
+        boolean b = hisymap.containsKey(uid);
+        if (b) {
+            Set<Integer> integers = hisymap.get(uid);
+            List<Goods> hisGoods = new ArrayList<>();
+
+            for (Integer i : integers) {
+                Goods one = goodsService.getOneGoodsId(i);
+                hisGoods.add(one);
+            }
+            return hisGoods;
+        }
+        return null;
+    }
+    @RequestMapping("/cleanHisMap")
+    public Boolean cleanHisMap(@RequestParam Integer uid){
+        boolean b = hisymap.containsKey(uid);
+        if (b){
+            hisymap.remove(uid);
+        }
+        return true;
+    }
 }

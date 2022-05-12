@@ -47,4 +47,8 @@ public class Message implements Serializable {
      *
      */
     private String buyname;
+
+    private String replymessage;
+
+    private Users users;
 }

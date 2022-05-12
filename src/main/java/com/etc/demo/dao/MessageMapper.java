@@ -1,9 +1,7 @@
 package com.etc.demo.dao;
 
 import com.etc.demo.entity.Message;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,4 +18,15 @@ public interface MessageMapper {
 
     @Select("select *from message where sellid = #{param1}")
     List<Message> getMyMessage(Integer id);
+
+    @Select("select *from message where sellid = #{param1}")
+    List<Message> getMegNum(Integer uid);
+
+    List<Message> getAllMs(Integer uid);
+
+    @Update("update message set replymessage=#{param2} where id = #{param1}")
+    Boolean updatem(Integer id, String reply);
+
+    @Delete("delete from message where id = #{param1}")
+    Boolean deletMsg(Integer id);
 }

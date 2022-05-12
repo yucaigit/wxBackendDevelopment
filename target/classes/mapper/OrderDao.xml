@@ -35,6 +35,19 @@
          from orders a,users b,goods c
          where a.user_id = b.u_id and a.goods_id = c.g_id
     </select>
+    <select id="getAllOrder" resultMap="result6">
+        select a.goods_id goods_id,a.order_amount order_amount,b.g_id g_id,b.g_price g_price
+        from orders a,goods b where a.goods_id = b.g_id
+    </select>
+    <resultMap id="result6" type="com.etc.demo.entity.Order">
+        <result column="goods_id" property="goodsId"/>
+        <result column="order_amount" property="orderAmount"/>
+        <association property="goods" javaType="com.etc.demo.entity.Goods">
+            <id column="g_id" property="gId"/>
+            <result column="g_price" property="gPrice"/>
+        </association>
+
+    </resultMap>
 
     <resultMap id="result3" type="com.etc.demo.entity.ReturnOrder">
         <id column="order_id" property="orderId"/>
@@ -51,6 +64,7 @@
         <association property="goods" javaType="com.etc.demo.entity.Goods">
             <id column="g_id" property="gId"/>
             <result column="g_name" property="gName"/>
+
             <result column="g_adress" property="gAdress"/>
         </association>
     </resultMap>

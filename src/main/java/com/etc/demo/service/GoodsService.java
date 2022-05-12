@@ -26,4 +26,6 @@ public interface GoodsService {
     List<Goods> getAllG();
 
     int findUserId(Integer goodsid);
+
+    Goods getOneGoodsId(Integer i);
 }
