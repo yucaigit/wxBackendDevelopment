@@ -1,9 +1,6 @@
 package com.etc.demo.controller;
 
-import com.etc.demo.dao.AdressMapper;
-import com.etc.demo.dao.MessageMapper;
-import com.etc.demo.dao.OrderDao;
-import com.etc.demo.dao.UsersDao;
+import com.etc.demo.dao.*;
 import com.etc.demo.entity.Adress;
 import com.etc.demo.entity.Goods;
 import com.etc.demo.entity.GoodsEntity;
@@ -41,6 +38,8 @@ public class GoodsController {
     @Autowired
     UsersDao usersDao;
 
+    @Autowired
+    GoodsDao goodsDao;
 
     //    得到轮播图树据
     @RequestMapping("/findSwiperList")
@@ -129,6 +128,7 @@ public class GoodsController {
     @RequestMapping("/payGoods")
     public boolean payGoods(@RequestParam Integer uid,@RequestParam Integer goodsid){
 //        此处应该先删除商品添加到订单
+
         return orderDao.addOrder(uid,goodsid);
     }
 
@@ -188,5 +188,20 @@ public class GoodsController {
             hisymap.remove(uid);
         }
         return true;
+    }
+
+//   我的 发布商品
+    @RequestMapping("/getMypubGoods")
+    public List<Goods> getMypubGoods(@RequestParam Integer userid){
+        return goodsDao.getMyPubGoods(userid);    }
+
+    @RequestMapping("/getMypubGoodsIsBuyOne")
+    public List<Goods> getMYGoodsBuyOne(@RequestParam Integer userid){return goodsDao.getMygoodsBuyOne(userid);}
+
+    @RequestMapping("/getMypubGoodsIsBuyZero")
+    public List<Goods> getMyGoodsBuyZero(@RequestParam Integer userid){return goodsDao.getMygoodsBuyZero(userid);}
+    @RequestMapping("/removeMyup")
+    public Boolean removeMyUpGodds(@RequestParam Integer gid){
+        return goodsDao.removeMyUp(gid);
     }
 }

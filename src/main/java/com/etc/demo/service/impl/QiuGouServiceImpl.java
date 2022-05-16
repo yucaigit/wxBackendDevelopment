@@ -44,6 +44,6 @@ public class QiuGouServiceImpl implements QiugouService {
 
     @Override
     public Boolean savaXuQiu(QiugouEntity qiugouEntity) {
-        return qiuGouMapper.savaXuqiu(qiugouEntity.getName(), qiugouEntity.getPhone(), qiugouEntity.getNeedGoods());
+        return qiuGouMapper.savaXuqiu(qiugouEntity.getName(), qiugouEntity.getPhone(), qiugouEntity.getNeedGoods(),qiugouEntity.getPrice());
     }
 }

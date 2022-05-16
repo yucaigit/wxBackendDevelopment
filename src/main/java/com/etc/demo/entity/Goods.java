@@ -35,6 +35,7 @@ public class Goods implements Serializable {
 
     private String gState;
 
+//    热搜等级
     private Integer gA;
 
 //    商品状态 0为未上架 1为上架
@@ -46,7 +47,11 @@ public class Goods implements Serializable {
 
     private String gDescribe;
 
+//    0 为没有购买 1为已被购买 2是删除
+    private Integer isBuy;
+
     private List<Imgs> imgs;
+
 
     private static final long serialVersionUID = 1L;
 }

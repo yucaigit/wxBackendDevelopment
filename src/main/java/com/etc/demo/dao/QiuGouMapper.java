@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.data.jpa.repository.Query;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Mapper
@@ -14,6 +15,7 @@ public interface QiuGouMapper {
     @Select("select *from qiugou")
     List<QiugouEntity> getNotic();
 
-    @Insert("insert into qiugou (name,phone,needgoods) values (#{param1},#{param2},#{param3})")
-    Boolean savaXuqiu(String name, String phone, String needGoods);
+    @Insert("insert into qiugou (name,phone,needgoods,price) values (#{param1},#{param2},#{param3},#{param4})")
+    Boolean savaXuqiu(String name, String phone, String needGoods, BigDecimal price);
+
 }

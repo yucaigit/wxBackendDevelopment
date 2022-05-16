@@ -50,7 +50,7 @@ public interface GoodsDao {
     @Delete("delete from goods where g_id = #{gid}")
     boolean deleteGoodsById(Integer gid);
 
-    @Select("select *from goods where g_b=1")
+    @Select("select *from goods where g_b=1 and isbuy!=2")
     List<Goods> getAllG();
 
     @Select("select g_uid from goods where g_id = #{param1}")
@@ -70,6 +70,18 @@ public interface GoodsDao {
 
     @Select("select *from goods where g_name =#{param2} and g_attributes = #{param1}")
     Goods getOneGoods(int id, String gName);
+
+    @Select("select *from goods where g_uid = #{param1} and isbuy !=2")
+    List<Goods> getMyPubGoods(Integer userid);
+
+    @Update("update goods set isbuy = 2 where g_id = #{param1}")
+    Boolean removeMyUp(Integer gid);
+
+    @Select("select *from goods where isbuy = 1 and g_uid = #{param1}")
+    List<Goods> getMygoodsBuyOne(Integer userid);
+
+    @Select("select *from goods where isbuy = 0 and g_uid =#{param1}")
+    List<Goods> getMygoodsBuyZero(Integer userid);
 
     //update goods set g_a=g_a+1 where g_id=#{g_id}
     //

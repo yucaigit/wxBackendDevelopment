@@ -19,6 +19,7 @@
         <result column="g_c" jdbcType="VARCHAR" property="gC"/>
         <result column="g_img2" jdbcType="VARCHAR" property="gImg2"/>
         <result column="g_describe" jdbcType="VARCHAR" property="gDescribe"/>
+        <result column="isbuy" jdbcType="INTEGER" property="isBuy"/>
     </resultMap>
 
     <sql id="Base_Column_List">

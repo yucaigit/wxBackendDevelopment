@@ -5,40 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8d988458-1e83-4db5-aa4b-6911d59dfcf0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/controller/MessageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/hmwebsocket/Message.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/hmwebsocket/MessageUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/hmwebsocket/ResultMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/service/MessageService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/service/impl/MessageServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/webSocket/WebSocketServerEndpoint2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5e1244c7-48b2-439e-b403-78b3d679ff2a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/5e1244c7-48b2-439e-b403-78b3d679ff2a.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/mybatisx/templates.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mybatisx/templates.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/controller/GoodsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/controller/GoodsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/dao/AttributeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/dao/AttributeMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/dao/GoodsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/dao/GoodsDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/dao/MessageMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/dao/MessageMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/dao/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/dao/OrderDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/dao/UsersDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/dao/UsersDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/entity/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/entity/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/entity/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/menagement/MessageMentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/menagement/MessageMentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/service/GoodsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/service/GoodsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/service/impl/GoodsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/service/impl/GoodsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/OrderDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/OrderDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/dao/QiuGouMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/dao/QiuGouMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/entity/Goods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/entity/Goods.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/entity/QiugouEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/entity/QiugouEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/etc/demo/service/impl/QiuGouServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/etc/demo/service/impl/QiuGouServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/GoodsDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/GoodsDao.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/etc/demo/controller/GoodsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/etc/demo/controller/GoodsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/etc/demo/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/etc/demo/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/etc/demo/dao/AttributeMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/etc/demo/dao/AttributeMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/etc/demo/dao/GoodsDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/etc/demo/dao/GoodsDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/etc/demo/dao/MessageMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/etc/demo/dao/MessageMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/etc/demo/dao/OrderDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/etc/demo/dao/OrderDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/etc/demo/dao/UsersDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/etc/demo/dao/UsersDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/etc/demo/entity/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/etc/demo/entity/Message.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/etc/demo/menagement/MessageMentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/etc/demo/menagement/MessageMentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/etc/demo/service/GoodsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/etc/demo/service/GoodsService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/etc/demo/service/impl/GoodsServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/etc/demo/service/impl/GoodsServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/etc/demo/dao/QiuGouMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/etc/demo/dao/QiuGouMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/etc/demo/service/impl/QiuGouServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/etc/demo/service/impl/QiuGouServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,6 +173,9 @@
       <workItem from="1652231152834" duration="2500000" />
       <workItem from="1652233884106" duration="6362000" />
       <workItem from="1652319544891" duration="14646000" />
+      <workItem from="1652364376118" duration="159000" />
+      <workItem from="1652435034552" duration="23000" />
+      <workItem from="1652688134221" duration="6194000" />
     </task>
     <servers />
   </component>
