@@ -28,4 +28,6 @@ public interface GoodsService {
     int findUserId(Integer goodsid);
 
     Goods getOneGoodsId(Integer i);
+
+    Boolean qiugouGoods(Integer uid, String needName);
 }

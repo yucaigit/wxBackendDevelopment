@@ -128,7 +128,7 @@ public class GoodsController {
     @RequestMapping("/payGoods")
     public boolean payGoods(@RequestParam Integer uid,@RequestParam Integer goodsid){
 //        此处应该先删除商品添加到订单
-
+        boolean e =  goodsDao.updateIsBuy(goodsid);
         return orderDao.addOrder(uid,goodsid);
     }
 
@@ -144,9 +144,11 @@ public class GoodsController {
 
     //添加到足迹里面
     @RequestMapping("/addHistory")
+//    记录用户历史浏览记录
     public Boolean addHistory(@RequestParam Integer uid,
                               @RequestParam Integer goodsid)
     {
+        //hisymap 为一个 <Integer, Set<Integer> 的HashMap
         boolean b = hisymap.containsKey(uid);
         if (b){
             Set<Integer> integers = hisymap.get(uid);

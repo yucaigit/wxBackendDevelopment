@@ -3,10 +3,7 @@ package com.etc.demo.dao;
 
 import com.etc.demo.entity.Order;
 import com.etc.demo.entity.ReturnOrder;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -56,4 +53,12 @@ public interface OrderDao {
 
 //    得到全部金额
     List<Order> getAllOrder();
+
+    List<Order> succOrder(Integer uid);
+
+    @Select("SELECT SUM(order_amount) from orders")
+    int getOrderCunt();
+
+    @Delete("delete from orders where order_id = #{param1}")
+    Boolean deleteOrder(Integer oid);
 }

@@ -24,7 +24,7 @@
     </select>
     <select id="findAll" resultMap="ordermap">
         select a.order_id order_id,a.user_id user_id,a.goods_id goods_id,a.order_state order_state,b.g_id g_id, b.g_name g_name,b.g_img1 g_img1,b.g_price g_price from orders a,goods b
- where a.user_id =#{uid} and a.goods_id = b.g_id
+ where a.user_id =#{uid} and a.goods_id = b.g_id and a.order_state !=5
     </select>
 
 
@@ -38,6 +38,10 @@
     <select id="getAllOrder" resultMap="result6">
         select a.goods_id goods_id,a.order_amount order_amount,b.g_id g_id,b.g_price g_price
         from orders a,goods b where a.goods_id = b.g_id
+    </select>
+    <select id="succOrder" resultMap="ordermap">
+        select a.order_id order_id,a.user_id user_id,a.goods_id goods_id,a.order_state order_state,b.g_id g_id, b.g_name g_name,b.g_img1 g_img1,b.g_price g_price from orders a,goods b
+        where a.user_id =#{uid} and a.goods_id = b.g_id and a.order_state =0
     </select>
     <resultMap id="result6" type="com.etc.demo.entity.Order">
         <result column="goods_id" property="goodsId"/>

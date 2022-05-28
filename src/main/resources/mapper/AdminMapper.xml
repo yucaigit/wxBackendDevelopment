@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etc.demo.dao.AdminMapper">
+
+    <resultMap id="BaseResultMap" type="com.etc.demo.entity.Admin">
+            <id property="adminId" column="admin_id" jdbcType="INTEGER"/>
+            <result property="adminName" column="admin_name" jdbcType="VARCHAR"/>
+            <result property="adminPhone" column="admin_phone" jdbcType="VARCHAR"/>
+            <result property="adminPassword" column="admin_password" jdbcType="VARCHAR"/>
+            <result property="adminB" column="admin_b" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        admin_id,admin_name,admin_phone,
+        admin_a,admin_b
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from admin
+        where  admin_id = #{adminId,jdbcType=INTEGER} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from admin
+        where  admin_id = #{adminId,jdbcType=INTEGER} 
+    </delete>
+    <insert id="insert" keyColumn="admin_id" keyProperty="adminId" parameterType="com.etc.demo.entity.Admin" useGeneratedKeys="true">
+        insert into admin
+        ( admin_id,admin_name,admin_phone
+        ,admin_a,admin_b)
+        values (#{adminId,jdbcType=INTEGER},#{adminName,jdbcType=VARCHAR},#{adminPhone,jdbcType=VARCHAR}
+        ,#{adminA,jdbcType=VARCHAR},#{adminB,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="admin_id" keyProperty="adminId" parameterType="com.etc.demo.entity.Admin" useGeneratedKeys="true">
+        insert into admin
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="adminId != null">admin_id,</if>
+                <if test="adminName != null">admin_name,</if>
+                <if test="adminPhone != null">admin_phone,</if>
+                <if test="adminA != null">admin_a,</if>
+                <if test="adminB != null">admin_b,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="adminId != null">#{adminId,jdbcType=INTEGER},</if>
+                <if test="adminName != null">#{adminName,jdbcType=VARCHAR},</if>
+                <if test="adminPhone != null">#{adminPhone,jdbcType=VARCHAR},</if>
+                <if test="adminA != null">#{adminA,jdbcType=VARCHAR},</if>
+                <if test="adminB != null">#{adminB,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.etc.demo.entity.Admin">
+        update admin
+        <set>
+                <if test="adminName != null">
+                    admin_name = #{adminName,jdbcType=VARCHAR},
+                </if>
+                <if test="adminPhone != null">
+                    admin_phone = #{adminPhone,jdbcType=VARCHAR},
+                </if>
+                <if test="adminA != null">
+                    admin_a = #{adminA,jdbcType=VARCHAR},
+                </if>
+                <if test="adminB != null">
+                    admin_b = #{adminB,jdbcType=VARCHAR},
+                </if>
+        </set>
+        where   admin_id = #{adminId,jdbcType=INTEGER} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.etc.demo.entity.Admin">
+        update admin
+        set 
+            admin_name =  #{adminName,jdbcType=VARCHAR},
+            admin_phone =  #{adminPhone,jdbcType=VARCHAR},
+            admin_a =  #{adminA,jdbcType=VARCHAR},
+            admin_b =  #{adminB,jdbcType=VARCHAR}
+        where   admin_id = #{adminId,jdbcType=INTEGER} 
+    </update>
+</mapper>

@@ -3,6 +3,7 @@ package com.etc.demo.controller;
 import com.etc.demo.entity.Order;
 import com.etc.demo.service.OrderService;
 
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,5 +33,10 @@ public class OrderController {
     @RequestMapping("/confirmResive")
     public boolean confirmResive(@RequestParam Integer oId) {
         return orderService.updateOrderState(oId);
+    }
+
+    @RequestMapping("/getSuccess")
+    public List<Order> succOrder(@RequestParam Integer uid){
+        return orderService.succOrder(uid);
     }
 }

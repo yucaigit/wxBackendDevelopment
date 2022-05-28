@@ -73,4 +73,9 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.changeOrderState(oId);
     }
 
+    @Override
+    public List<Order> succOrder(Integer uid) {
+        return orderDao.succOrder(uid);
+    }
+
 }

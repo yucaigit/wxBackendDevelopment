@@ -1,5 +1,6 @@
 package com.etc.demo.controller;
 
+import com.etc.demo.entity.Attribute;
 import com.etc.demo.entity.Message;
 import com.etc.demo.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,4 +29,5 @@ public class MessageController {
     }
     @RequestMapping("/deletemsg")
     public Boolean deleteMsg(@RequestParam Integer id){return messageService.deleMsg(id);}
+
 }

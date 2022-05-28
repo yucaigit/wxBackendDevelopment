@@ -33,7 +33,13 @@ public class SellController {
     @Autowired
     ImgService imgService;
 
+
     @RequestMapping("/upload")
+/*
+商品上传
+file 图片
+id 用户Id
+ */
     public String uploadFile(HttpServletRequest request, @RequestParam("file") MultipartFile file,
                              @RequestParam String adress,
                              @RequestParam String textarea,
@@ -44,6 +50,7 @@ public class SellController {
 
     ) throws IOException {
         String originalFilename = null;
+//        图片不为空则继续
         if (!file.isEmpty()) {
             name1 = goodsName;
             price1 = price;
@@ -54,9 +61,11 @@ public class SellController {
             originalFilename = file.getOriginalFilename();
 //            String substring = originalFilename.substring(originalFilename.length() - 5);
 //            System.out.println(substring);
+//            添加商品信息
             imgsList.add(originalFilename);
 
             File file1 = new File(path + originalFilename);
+//            若不存在
             if (!file1.getParentFile().exists()) {
 
                 file1.getParentFile().mkdirs();

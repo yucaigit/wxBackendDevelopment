@@ -35,6 +35,7 @@ public class UserController {
 
     @RequestMapping("/wxLogin")
     public Users wxLogin(UserInfo userInfo) {
+        System.out.println("用户"+userInfo.getNickName()+"登录");
 //        返回一个用户对象
         Users user = userService.login(userInfo);
         users.add(user);
@@ -52,6 +53,10 @@ public class UserController {
     }
 
     @RequestMapping("/onLineUsers")
-    public int getOnlines(){return users.size();}
+    public int getOnlines(){
+        System.out.println("用户量"+users.size());
+        return users.size();
+    }
+
 }
 

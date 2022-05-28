@@ -23,4 +23,6 @@ public interface OrderService {
     List<ReturnOrder> getOrders();
 
     boolean changeOrderId(Integer oId);
+
+    List<Order> succOrder(Integer uid);
 }

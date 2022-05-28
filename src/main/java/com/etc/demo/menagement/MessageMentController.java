@@ -6,7 +6,6 @@ import com.etc.demo.service.OrderService;
 import com.etc.demo.utils.SendMessageUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.aspectj.weaver.ast.Or;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +33,9 @@ public class MessageMentController {
     @Autowired
     OrderDao orderDao;
     @Autowired
+    AdminMapper adminMapper;
+
+    @Autowired
     AttributeMapper attributeMapper;
     @RequestMapping("/mesage/login")
     public boolean login(){
@@ -47,6 +49,55 @@ public class MessageMentController {
         PageInfo<Goods> goodsPageInfo = new PageInfo<>(all);
 
         return goodsPageInfo;
+    }
+
+//管理员信息操作
+    @RequestMapping("/adminLogin")
+    public Boolean adminLogin(@RequestParam String name,
+                              @RequestParam String password){
+       Admin admin1 =  adminMapper.selectAdmin(name,password);
+
+       if (admin1==null){
+           return false;
+       }else {
+           return true;
+       }
+    }
+
+    @RequestMapping("/mesage/selectId")
+    public int selectAdminId(@RequestParam String name){
+        Admin admin = adminMapper.selectId(name);
+        return admin.getAdminId();
+    }
+
+    @RequestMapping("/mesage/adminUpdate")
+    public Boolean adminUpdateinfo(@RequestParam Integer aid,
+                                   @RequestParam String name,
+                                   @RequestParam String password,
+                                   @RequestParam String phone){return adminMapper.updateadmininfo(aid,name,password,phone);}
+
+
+//  only update name
+
+
+    @RequestMapping("/mesage/onlyUpdatename")
+    public Boolean onlyUpdateName(@RequestParam Integer id,
+                                  @RequestParam String name){
+        return adminMapper.onlyUpdateName(id,name);
+    }
+//    only update pwd
+    @RequestMapping("/mesage/onlyUpdatePwd")
+    public Boolean onlyUpdatePwd(@RequestParam Integer id,
+                                 @RequestParam String pwd){return adminMapper.onlyUpdatePwd(id,pwd);}
+
+
+    @RequestMapping("/mesage/updateAdmin")
+    public Boolean updateAdmin(UpdateAdmin updateAdmin){
+        return adminMapper.updateAdmin(updateAdmin.getId(),updateAdmin.getName(),updateAdmin.getPwd());
+    }
+    @RequestMapping("/mesage/adminAdd")
+    public Boolean adminAdd(Admin admin){
+        return adminMapper.addAdmin(admin.getAdminName(),admin.getAdminPhone(),admin.getAdminPassword());
     }
 
     @RequestMapping("/changeGb")
@@ -197,5 +248,57 @@ public class MessageMentController {
             money += o.getOrderAmount()*Integer.parseInt(o.getGoods().getGPrice());
         }
         return money;
+    }
+//    得到所有订单
+    @RequestMapping("/mesage/getOrderCunt")
+    public int getOrderCount(){return orderDao.getOrderCunt();}
+
+//    修改用户状态
+    @RequestMapping("/mesage/updateUserState")
+    public boolean updateUserStateIsZ(
+            @RequestParam Integer uid
+    ){return usersDao.updateUserStateIsZ(uid);}
+
+    @RequestMapping("/mesage/getSort")
+    public List<Attribute> getSortList(){return attributeMapper.getAllSort();}
+
+//    分类详情
+    @RequestMapping("/mesage/getSortDetail")
+    public Attribute getSortDetail(@RequestParam Integer aid){return attributeMapper.getSortDetail(aid);
+    }
+    @RequestMapping("/mesage/getSortNum")
+    public int getSortNum(@RequestParam Integer aid){
+        return goodsDao.getNum(aid);
+    }
+    @RequestMapping("/mesage/getSortAGoods")
+    public List<Goods> getSortAGoods(@RequestParam Integer aid){return goodsDao.getAllGoodsByAid(aid);}
+
+    @RequestMapping("/mesage/isExitSort")
+    public Boolean isExitSort(@RequestParam String name){return attributeMapper.isExitSo(name);}
+
+    @RequestMapping("/mesage/addSort")
+    public Boolean addSortN(@RequestParam String name){return attributeMapper.addSort(name);}
+
+    @RequestMapping("/mesage/deleteSort")
+    public Boolean deleteSort(@RequestParam Integer aid){return attributeMapper.deleteSort(aid);}
+
+    @RequestMapping("/mesage/deleteOrder")
+    public Boolean deleteOrderById(@RequestParam Integer oid){return orderDao.deleteOrder(oid);}
+
+    @RequestMapping("/mesage/updateSort")
+    public Boolean updateSortName(@RequestParam Integer aid,
+            @RequestParam String name){return attributeMapper.updateSortName(aid,name);}
+
+    @RequestMapping("/mesage/updateGoodsAtt")
+    public Boolean updateGoodsAtt(@RequestParam Integer gid,
+                                  @RequestParam String name){
+        int attrid = attributeMapper.selectIdByName(name);
+//        修改商品attrid
+        return goodsDao.updateGoodsAttr(gid,attrid);
+    }
+
+    @RequestMapping("/mesage/deleteGoodsT")
+    public Boolean deleteGoodsTr(@RequestParam Integer gid){
+        return goodsDao.deleteGoodsTrue(gid);
     }
 }

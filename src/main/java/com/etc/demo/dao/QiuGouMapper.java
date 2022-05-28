@@ -18,4 +18,6 @@ public interface QiuGouMapper {
     @Insert("insert into qiugou (name,phone,needgoods,price) values (#{param1},#{param2},#{param3},#{param4})")
     Boolean savaXuqiu(String name, String phone, String needGoods, BigDecimal price);
 
+    @Select("select *from qiugou")
+    List<QiugouEntity> getAll();
 }

@@ -11,7 +11,7 @@
         <result property="aCount" column="a_count" jdbcType="INTEGER"/>
         <result property="aA" column="a_a" jdbcType="VARCHAR"/>
         <result property="aB" column="a_b" jdbcType="VARCHAR"/>
-        <result property="aC" column="a_c" jdbcType="VARCHAR"/>
+        <result property="aC" column="a_c" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
@@ -33,6 +33,20 @@
         select a.a_id,a.a_name,b.g_id,b.g_name,b.g_attributes,b.g_img1,b.g_price from attribute a left join goods b on
         a.a_id = b.g_attributes
     </select>
+
+
+
+    <resultMap id="sortGoods2" type="com.etc.demo.entity.Attribute">
+        <id column="a_id" property="aId"></id>
+        <result column="a_name" property="aName"></result>
+        <collection property="goodsList" javaType="com.etc.demo.entity.Goods">
+            <id column="g_id" property="gId"></id>
+            <result column="g_name" property="gName"></result>
+            <result column="g_attributes" property="gAttributes"></result>
+        </collection>
+    </resultMap>
+
+
     <resultMap id="sortGoods" type="com.etc.demo.entity.Attribute">
         <id column="a_id" property="aId"></id>
         <result column="a_name" property="aName"></result>

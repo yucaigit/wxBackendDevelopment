@@ -3,6 +3,7 @@ package com.etc.demo.entity;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -23,7 +24,8 @@ public class Attribute implements Serializable {
 
     private String aB;
 
-    private String aC;
+//   修改时间
+    private Timestamp aC;
 
     private List<Goods> goodsList;
 

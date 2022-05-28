@@ -20,7 +20,7 @@ public class Order implements Serializable {
 
     private Integer shoppingId;
 
-//    5 删除
+//    5 删除  0 确认收获
     private Integer orderState;
 
     private Timestamp orderSendtime;

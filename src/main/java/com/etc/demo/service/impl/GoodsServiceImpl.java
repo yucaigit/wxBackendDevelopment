@@ -92,4 +92,10 @@ public class GoodsServiceImpl implements GoodsService {
     public Goods getOneGoodsId(Integer i) {
         return goodsDao.getOne(i);
     }
+
+    @Override
+    public Boolean qiugouGoods(Integer uid, String needName) {
+       Boolean e = goodsDao.isExit(uid,needName);
+       return e;
+    }
 }

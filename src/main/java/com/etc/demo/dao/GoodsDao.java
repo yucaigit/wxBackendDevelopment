@@ -83,6 +83,21 @@ public interface GoodsDao {
     @Select("select *from goods where isbuy = 0 and g_uid =#{param1}")
     List<Goods> getMygoodsBuyZero(Integer userid);
 
+    @Select("select *from goods where g_uid = #{param1} and g_name = #{param2}")
+    Boolean isExit(Integer uid, String needName);
+
+    @Update("update goods set isbuy = 1 where g_id = #{param1}")
+    boolean updateIsBuy(Integer goodsid);
+
+    @Select("select count(*) from goods where g_attributes = #{param1}")
+    int getNum(Integer aid);
+
+    @Update("update goods set g_attributes = #{param2} where g_id = #{param1}")
+    Boolean updateGoodsAttr(Integer gid, int attrid);
+
+    @Delete("delete from goods where g_id =#{param1}")
+    Boolean deleteGoodsTrue(Integer gid);
+
     //update goods set g_a=g_a+1 where g_id=#{g_id}
     //
 }
